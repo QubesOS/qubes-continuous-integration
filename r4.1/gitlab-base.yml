@@ -19,7 +19,8 @@ stages:
 
 .components_prepare:
   tags:
-    - notset-runner
+    - docker-runner
+    - short-living-job
   artifacts:
     expire_in: 1 day
     paths:
@@ -36,7 +37,8 @@ stages:
 
 .components_build:
   tags:
-    - notset-runner
+    - docker-runner
+    - short-living-job
   artifacts:
     expire_in: 1 day
     when: always
@@ -56,7 +58,8 @@ stages:
 
 .components_install:
   tags:
-    - notset-runner
+    - docker-runner
+    - short-living-job
   artifacts:
     expire_in: 1 day
     when: always
@@ -73,7 +76,8 @@ stages:
 
 .components_repro:
   tags:
-    - notset-runner
+    - docker-runner
+    - short-living-job
   artifacts:
     expire_in: 1 day
     when: always
