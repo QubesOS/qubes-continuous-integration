@@ -7,6 +7,11 @@ workflow:
       when: always
     - when: never
 
+default:
+  tags:
+    - docker-runner
+    - short-living-job
+
 stages:
   - prepare
   - build
@@ -19,9 +24,6 @@ stages:
 ### TEMPLATES FOR PULLREQUEST JOBS
 
 .components_prepare:
-  tags:
-    - docker-runner
-    - short-living-job
   artifacts:
     expire_in: 1 day
     paths:
@@ -37,9 +39,6 @@ stages:
     - tar cvf $CI_PROJECT_DIR/qubes-builder.tar.gz --strip-components=1 -C ~/ qubes-builder
 
 .components_build:
-  tags:
-    - docker-runner
-    - short-living-job
   artifacts:
     expire_in: 1 day
     when: always
@@ -58,9 +57,6 @@ stages:
     - mv ~/qubes-builder/qubes-packages-mirror-repo $CI_PROJECT_DIR
 
 .components_install:
-  tags:
-    - docker-runner
-    - short-living-job
   artifacts:
     expire_in: 1 day
     when: always
@@ -76,9 +72,6 @@ stages:
     - mv ~/qubes-builder/travis-install.log $CI_PROJECT_DIR/
 
 .components_repro:
-  tags:
-    - docker-runner
-    - short-living-job
   artifacts:
     expire_in: 1 day
     when: always
