@@ -3,7 +3,7 @@ variables:
 
 workflow:
   rules:
-    - if: '$CI_COMMIT_REF_NAME =~ /pr-.*-master/ || $CI_COMMIT_REF_NAME =~ /pr-.*-release4.0/ || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api"'
+    - if: '$CI_COMMIT_REF_NAME =~ /pr-.*/ || $CI_PIPELINE_SOURCE == "web" || $CI_PIPELINE_SOURCE == "api"'
       when: always
     - when: never
 
