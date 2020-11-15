@@ -15,7 +15,7 @@ stages:
   - repro
   - publish
 
-### PULLREQUEST JOBS
+### TEMPLATES FOR PULLREQUEST JOBS
 
 .components_prepare:
   tags:
@@ -29,7 +29,7 @@ stages:
     GIT_CLONE_FAST: 1
   stage: prepare
   before_script:
-    - git clone -b travis-sources https://github.com/fepitre/qubes-builder ~/qubes-builder
+    - git clone https://github.com/QubesOS/qubes-builder ~/qubes-builder
   script:
     - ~/qubes-builder/scripts/travis-prepare $COMPONENTS
   after_script:
@@ -73,3 +73,8 @@ stages:
     - ~/qubes-builder/scripts/travis-install
   after_script:
     - mv ~/qubes-builder/travis-install.log $CI_PROJECT_DIR/
+
+###
+
+prep:sources:
+  extends: .components_prepare
