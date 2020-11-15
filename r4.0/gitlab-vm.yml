@@ -1,0 +1,5 @@
+include:
+  - '/r4.0/gitlab-vm-fedora.yml'
+  - '/r4.0/gitlab-vm-centos.yml'
+  - '/r4.0/gitlab-vm-debian.yml'
+#  - '/r4.0/gitlab-vm-archlinux.yml'

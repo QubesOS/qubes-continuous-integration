@@ -1,0 +1,18 @@
+build:vm-archlinux:
+  extends: .components_build
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: archlinux
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+install:vm-archlinux:
+  extends: .components_install
+  needs:
+    - prep:sources
+    - build:vm-archlinux
+  variables:
+    DISTS_VM: archlinux
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"

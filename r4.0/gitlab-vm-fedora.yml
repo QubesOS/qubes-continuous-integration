@@ -1,0 +1,18 @@
+build:vm-fc32:
+  extends: .components_build
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: fc32
+    USE_QUBES_REPO_VERSION: "4.0"
+    USE_QUBES_REPO_TESTING: "1"
+
+install:vm-fc32:
+  extends: .components_install
+  needs:
+    - prep:sources
+    - build:vm-fc32
+  variables:
+    DISTS_VM: fc32
+    USE_QUBES_REPO_VERSION: "4.0"
+    USE_QUBES_REPO_TESTING: "1"

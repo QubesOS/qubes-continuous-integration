@@ -1,0 +1,7 @@
+prep:sources:
+  extends: .components_prepare
+
+include:
+  - '/r4.1/gitlab-base.yml'
+  - '/r4.1/gitlab-dom0.yml'
+  - '/r4.1/gitlab-vm.yml'
