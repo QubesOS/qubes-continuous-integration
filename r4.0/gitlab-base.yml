@@ -13,6 +13,7 @@ stages:
   - install
   - template
   - repro
+  - tests
   - publish
 
 ### TEMPLATES FOR PULLREQUEST JOBS
