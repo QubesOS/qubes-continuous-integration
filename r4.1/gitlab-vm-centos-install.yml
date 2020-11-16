@@ -1,0 +1,9 @@
+install:vm-centos8:
+  extends: .components_install
+  needs:
+    - prep:sources
+    - build:vm-centos8
+  variables:
+    DISTS_VM: centos8
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
