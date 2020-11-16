@@ -34,7 +34,7 @@ stages:
   before_script:
     - git clone https://github.com/QubesOS/qubes-builder ~/qubes-builder
   script:
-    - ~/qubes-builder/scripts/travis-prepare $COMPONENTS
+    - ~/qubes-builder/scripts/travis-prepare "$COMPONENTS"
   after_script:
     - tar cvf $CI_PROJECT_DIR/qubes-builder.tar.gz --strip-components=1 -C ~/ qubes-builder
 
