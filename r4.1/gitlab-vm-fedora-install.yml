@@ -3,6 +3,10 @@ install:vm-fc32:
   needs:
     - prep:sources
     - build:vm-fc32
+    - project: qubes-builder-rpm
+      ref: master
+      job: chroot:vm-fc32-legacy
+      artifacts: true
   variables:
     DISTS_VM: fc32
     USE_QUBES_REPO_VERSION: "4.1"

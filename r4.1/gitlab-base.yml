@@ -13,6 +13,7 @@ default:
     - short-living-job
 
 stages:
+  - sources
   - prepare
   - checks
   - build
@@ -25,19 +26,46 @@ stages:
 ### TEMPLATES FOR PULLREQUEST JOBS
 
 .components_prepare:
+  # we enforce tags to not override it
+  tags:
+    - docker-runner
+    - short-living-job
   artifacts:
     expire_in: 1 day
     paths:
       - qubes-builder.tar.gz
   variables:
     GIT_CLONE_FAST: 1
-  stage: prepare
+  stage: sources
   before_script:
     - git clone https://github.com/QubesOS/qubes-builder ~/qubes-builder
   script:
     - ~/qubes-builder/scripts/travis-prepare "$COMPONENTS"
   after_script:
     - tar cvf $CI_PROJECT_DIR/qubes-builder.tar.gz --strip-components=1 -C ~/ qubes-builder
+
+.chroot_prepare:
+  # we enforce tags to not override it
+  tags:
+    - docker-runner
+    - short-living-job
+  artifacts:
+    expire_in: 7 days
+    paths:
+      - chroot.tar.gz
+  variables:
+    USE_DIST_BUILD_TOOLS: 1
+  stage: prepare
+  before_script:
+    - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
+  script:
+    - export BUILDERCONF=scripts/travis-builder.conf
+    - make -C ~/qubes-builder prepare-chroot-$([[ -n ${DIST_DOM0} ]] && echo dom0 || echo vm) COMPONENTS='$(BUILDER_PLUGINS)'
+  after_script:
+    - cd ~/qubes-builder
+    - make umount
+    - sudo tar cvf $CI_PROJECT_DIR/chroot.tar.gz --strip-components=1 -C ~/qubes-builder chroot-*
+    - chown gitlab-runner:gitlab-runner $CI_PROJECT_DIR/chroot.tar.gz
 
 .components_build:
   artifacts:
@@ -51,6 +79,7 @@ stages:
   stage: build
   before_script:
     - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
+    - sudo tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
   script:
     - ~/qubes-builder/scripts/travis-build "$COMPONENTS"
   after_script:
@@ -66,6 +95,7 @@ stages:
   stage: install
   before_script:
     - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
+    - tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
     - ~/qubes-builder/scripts/travis-install
@@ -81,6 +111,7 @@ stages:
   stage: repro
   before_script:
     - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
+    - tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
     - ~/qubes-builder/scripts/travis-reprotest

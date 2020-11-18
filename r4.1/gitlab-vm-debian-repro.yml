@@ -3,6 +3,10 @@ repro:vm-bullseye:
   needs:
     - prep:sources
     - build:vm-bullseye
+    - project: qubes-builder-debian
+      ref: master
+      job: chroot:vm-bullseye-legacy
+      artifacts: true
   variables:
     DISTS_VM: bullseye
     USE_QUBES_REPO_VERSION: "4.1"

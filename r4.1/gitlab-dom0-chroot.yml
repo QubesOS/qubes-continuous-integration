@@ -1,0 +1,17 @@
+chroot:dom0-fc25:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DIST_DOM0: fc25
+    USE_QUBES_REPO_VERSION: "4.0"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:dom0-fc32:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DIST_DOM0: fc32
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"

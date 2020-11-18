@@ -1,12 +1,9 @@
-build:vm-fc32:
+build:vm-archlinux:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-rpm
-      ref: master
-      job: chroot:vm-fc32
-      artifacts: true
+    - chroot:vm-archlinux
   variables:
-    DISTS_VM: fc32
+    DISTS_VM: archlinux
     USE_QUBES_REPO_VERSION: "4.1"
     USE_QUBES_REPO_TESTING: "1"

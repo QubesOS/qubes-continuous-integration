@@ -2,6 +2,10 @@ build:vm-archlinux:
   extends: .components_build
   needs:
     - prep:sources
+    - project: qubes-builder-archlinux
+      ref: master
+      job: chroot:vm-archlinux
+      artifacts: true
   variables:
     DISTS_VM: archlinux
     USE_QUBES_REPO_VERSION: "4.1"

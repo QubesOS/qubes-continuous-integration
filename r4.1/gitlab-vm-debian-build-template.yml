@@ -2,10 +2,7 @@ build:vm-buster:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-debian
-      ref: master
-      job: chroot:vm-buster
-      artifacts: true
+    - chroot:vm-buster
   variables:
     DISTS_VM: buster
     USE_QUBES_REPO_VERSION: "4.1"
@@ -15,10 +12,7 @@ build:vm-bullseye:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-debian
-      ref: master
-      job: chroot:vm-bullseye
-      artifacts: true
+    - chroot:vm-bullseye
   variables:
     DISTS_VM: bullseye
     USE_QUBES_REPO_VERSION: "4.1"

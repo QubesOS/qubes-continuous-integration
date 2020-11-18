@@ -1,6 +1,2 @@
-build:dom0-fc32:
-  extends: .components_build
-  variables:
-    DIST_DOM0: "fc32"
-    USE_QUBES_REPO_VERSION: "4.1"
-    USE_QUBES_REPO_TESTING: "1"
+include:
+  - '/r4.1/gitlab-dom0-build.yml'

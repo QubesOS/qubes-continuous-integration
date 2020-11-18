@@ -1,0 +1,56 @@
+chroot:vm-buster:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: buster
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-buster-legacy:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    USE_DIST_BUILD_TOOL: 0
+    DISTS_VM: buster
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-bullseye:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: bullseye
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-bullseye-legacy:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    USE_DIST_BUILD_TOOL: 0
+    DISTS_VM: bullseye
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-bionic:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: bionic
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-bionic-legacy:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    USE_DIST_BUILD_TOOL: 0
+    DISTS_VM: bionic
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"

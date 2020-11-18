@@ -1,0 +1,8 @@
+chroot:vm-archlinux:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: archlinux
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
