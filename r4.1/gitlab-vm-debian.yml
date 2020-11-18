@@ -1,28 +1,4 @@
-build:vm-bullseye:
-  extends: .components_build
-  needs:
-    - prep:sources
-  variables:
-    DISTS_VM: bullseye
-    USE_QUBES_REPO_VERSION: "4.1"
-    USE_QUBES_REPO_TESTING: "1"
-
-install:vm-bullseye:
-  extends: .components_install
-  needs:
-    - prep:sources
-    - build:vm-bullseye
-  variables:
-    DISTS_VM: bullseye
-    USE_QUBES_REPO_VERSION: "4.1"
-    USE_QUBES_REPO_TESTING: "1"
-
-repro:vm-bullseye:
-  extends: .components_repro
-  needs:
-    - prep:sources
-    - build:vm-bullseye
-  variables:
-    DISTS_VM: bullseye
-    USE_QUBES_REPO_VERSION: "4.1"
-    USE_QUBES_REPO_TESTING: "1"
+include:
+  - '/r4.1/gitlab-vm-debian-build.yml'
+  - '/r4.1/gitlab-vm-debian-install.yml'
+  - '/r4.1/gitlab-vm-debian-repro.yml'

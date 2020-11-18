@@ -1,0 +1,8 @@
+build:vm-bullseye:
+  extends: .components_build
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: bullseye
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
