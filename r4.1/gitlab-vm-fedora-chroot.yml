@@ -12,7 +12,7 @@ chroot:vm-fc32-legacy:
   needs:
     - prep:sources
   variables:
-    USE_DIST_BUILD_TOOL: 0
+    USE_DIST_BUILD_TOOLS: 0
     DISTS_VM: fc32
     USE_QUBES_REPO_VERSION: "4.1"
     USE_QUBES_REPO_TESTING: "1"
