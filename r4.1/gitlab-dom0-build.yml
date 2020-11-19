@@ -1,5 +1,11 @@
 build:dom0-fc32:
   extends: .components_build
+  needs:
+    - prep:sources
+    - project: qubes-builder-rpm
+      ref: master
+      job: chroot:dom0-fc32
+      artifacts: true
   variables:
     DIST_DOM0: "fc32"
     USE_QUBES_REPO_VERSION: "4.1"
