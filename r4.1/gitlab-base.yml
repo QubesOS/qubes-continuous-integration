@@ -95,7 +95,7 @@ stages:
   stage: install
   before_script:
     - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
-    - tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
+    - sudo tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
     - ~/qubes-builder/scripts/travis-install
@@ -111,7 +111,7 @@ stages:
   stage: repro
   before_script:
     - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
-    - tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
+    - sudo tar xvf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
     - ~/qubes-builder/scripts/travis-reprotest
