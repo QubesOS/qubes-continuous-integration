@@ -2,7 +2,7 @@ build:vm-buster:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-debian
+    - project: QubesOS/qubes-builder-debian
       ref: master
       job: chroot:vm-buster
       artifacts: true
@@ -15,7 +15,7 @@ build:vm-bullseye:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-debian
+    - project: QubesOS/qubes-builder-debian
       ref: master
       job: chroot:vm-bullseye
       artifacts: true

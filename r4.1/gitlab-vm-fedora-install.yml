@@ -3,7 +3,7 @@ install:vm-fc32:
   needs:
     - prep:sources
     - build:vm-fc32
-    - project: qubes-builder-rpm
+    - project: QubesOS/qubes-builder-rpm
       ref: master
       job: chroot:vm-fc32-legacy
       artifacts: true

@@ -2,7 +2,7 @@ build:vm-archlinux:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-archlinux
+    - project: QubesOS/qubes-builder-archlinux
       ref: master
       job: chroot:vm-archlinux
       artifacts: true

@@ -3,7 +3,7 @@ install:vm-buster:
   needs:
     - prep:sources
     - build:vm-buster
-    - project: qubes-builder-debian
+    - project: QubesOS/qubes-builder-debian
       ref: master
       job: chroot:vm-buster-legacy
       artifacts: true
@@ -17,7 +17,7 @@ install:vm-bullseye:
   needs:
     - prep:sources
     - build:vm-bullseye
-    - project: qubes-builder-debian
+    - project: QubesOS/qubes-builder-debian
       ref: master
       job: chroot:vm-bullseye-legacy
       artifacts: true

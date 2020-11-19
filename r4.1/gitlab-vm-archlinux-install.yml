@@ -3,7 +3,7 @@ install:vm-archlinux:
   needs:
     - prep:sources
     - build:vm-archlinux
-    - project: qubes-builder-archlinux
+    - project: QubesOS/qubes-builder-archlinux
       ref: master
       job: chroot:vm-archlinux
       artifacts: true

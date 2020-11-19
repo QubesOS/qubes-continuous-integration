@@ -2,7 +2,7 @@ build:vm-fc32:
   extends: .components_build
   needs:
     - prep:sources
-    - project: qubes-builder-rpm
+    - project: QubesOS/qubes-builder-rpm
       ref: master
       job: chroot:vm-fc32
       artifacts: true

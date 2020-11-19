@@ -3,7 +3,7 @@ install:vm-centos8:
   needs:
     - prep:sources
     - build:vm-centos8
-    - project: qubes-builder-rpm
+    - project: QubesOS/qubes-builder-rpm
       ref: master
       job: chroot:vm-centos8-legacy
       artifacts: true
