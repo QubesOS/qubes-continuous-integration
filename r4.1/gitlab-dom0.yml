@@ -1,2 +1,3 @@
 include:
   - '/r4.1/gitlab-dom0-build.yml'
+  - '/r4.1/gitlab-dom0-install.yml'

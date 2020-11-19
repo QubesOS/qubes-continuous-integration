@@ -1,0 +1,13 @@
+install:dom0-fc32:
+  extends: .components_install
+  needs:
+    - prep:sources
+    - build:dom0-fc32
+    - project: QubesOS/qubes-builder-rpm
+      ref: master
+      job: chroot:dom0-fc32-legacy
+      artifacts: true
+  variables:
+    DIST_DOM0: fc32
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
