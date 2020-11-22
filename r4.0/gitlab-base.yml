@@ -9,8 +9,7 @@ workflow:
 
 default:
   tags:
-    - docker-runner
-    - short-living-job
+    - docker
 
 stages:
   - prepare

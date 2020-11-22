@@ -9,8 +9,7 @@ workflow:
 
 default:
   tags:
-    - docker-runner
-    - short-living-job
+    - docker
 
 stages:
   - sources
@@ -28,8 +27,7 @@ stages:
 .components_prepare:
   # we enforce tags to not override it
   tags:
-    - docker-runner
-    - short-living-job
+    - docker
   artifacts:
     expire_in: 1 day
     paths:
@@ -47,8 +45,7 @@ stages:
 .chroot_prepare:
   # we enforce tags to not override it
   tags:
-    - docker-runner
-    - short-living-job
+    - docker
   artifacts:
     expire_in: 7 days
     paths:
