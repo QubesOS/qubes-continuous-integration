@@ -11,3 +11,17 @@ install:vm-fc32:
     DISTS_VM: fc32
     USE_QUBES_REPO_VERSION: "4.1"
     USE_QUBES_REPO_TESTING: "1"
+
+install:vm-fc33:
+  extends: .components_install
+  needs:
+    - prep:sources
+    - build:vm-fc33
+    - project: QubesOS/qubes-builder-rpm
+      ref: master
+      job: chroot:vm-fc33-legacy
+      artifacts: true
+  variables:
+    DISTS_VM: fc33
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"

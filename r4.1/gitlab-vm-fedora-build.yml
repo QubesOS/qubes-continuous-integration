@@ -10,3 +10,16 @@ build:vm-fc32:
     DISTS_VM: fc32
     USE_QUBES_REPO_VERSION: "4.1"
     USE_QUBES_REPO_TESTING: "1"
+
+build:vm-fc33:
+  extends: .components_build
+  needs:
+    - prep:sources
+    - project: QubesOS/qubes-builder-rpm
+      ref: master
+      job: chroot:vm-fc33
+      artifacts: true
+  variables:
+    DISTS_VM: fc33
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"

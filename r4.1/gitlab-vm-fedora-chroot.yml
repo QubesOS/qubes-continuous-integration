@@ -16,3 +16,22 @@ chroot:vm-fc32-legacy:
     DISTS_VM: fc32
     USE_QUBES_REPO_VERSION: "4.1"
     USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-fc33:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: fc33
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+chroot:vm-fc33-legacy:
+  extends: .chroot_prepare
+  needs:
+    - prep:sources
+  variables:
+    USE_DIST_BUILD_TOOLS: 0
+    DISTS_VM: fc33
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
