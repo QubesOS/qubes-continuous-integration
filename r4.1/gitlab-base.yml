@@ -104,6 +104,7 @@ stages:
     - mv ~/qubes-builder/travis-install.log $CI_PROJECT_DIR/
 
 .components_repro:
+  image: fepitre/repro-bullseye:latest
   artifacts:
     expire_in: 1 day
     when: always
@@ -115,9 +116,6 @@ stages:
     - sudo tar xf $CI_PROJECT_DIR/chroot.tar.gz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
-    # make prepare-chroot-* is for mounting builder repo artifacts
-    - export BUILDERCONF=scripts/travis-builder.conf
-    - make -C ~/qubes-builder prepare-chroot-$([[ -n ${DIST_DOM0} ]] && echo dom0 || echo vm) COMPONENTS='$(BUILDER_PLUGINS)'
     - ~/qubes-builder/scripts/travis-reprotest
   after_script:
     - mv ~/qubes-builder/travis-reprotest.log $CI_PROJECT_DIR/
