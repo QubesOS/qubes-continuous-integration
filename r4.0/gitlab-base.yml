@@ -36,7 +36,7 @@ stages:
   script:
     - ~/qubes-builder/scripts/travis-prepare "$COMPONENTS"
   after_script:
-    - tar cvf $CI_PROJECT_DIR/qubes-builder.tar.gz --strip-components=1 -C ~/ qubes-builder
+    - tar cf $CI_PROJECT_DIR/qubes-builder.tar.gz --strip-components=1 -C ~/ qubes-builder
 
 .components_build:
   artifacts:
@@ -49,7 +49,7 @@ stages:
     USE_DIST_BUILD_TOOLS: 1
   stage: build
   before_script:
-    - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
+    - tar xf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
   script:
     - ~/qubes-builder/scripts/travis-build "$COMPONENTS"
   after_script:
@@ -64,7 +64,7 @@ stages:
       - travis-install.log
   stage: install
   before_script:
-    - tar xvf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
+    - tar xf $CI_PROJECT_DIR/qubes-builder.tar.gz -C ~/
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
     - ~/qubes-builder/scripts/travis-install
