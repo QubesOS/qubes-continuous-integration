@@ -1,0 +1,58 @@
+include:
+  - '/r4.1/gitlab-base.yml'
+  - '/r4.1/gitlab-dom0-build.yml'
+  - '/r4.1/gitlab-vm-fedora-build.yml'
+  - '/r4.1/gitlab-vm-debian-build.yml'
+#  - '/r4.1/gitlab-vm-archlinux-build.yml'
+
+prep:sources:
+  extends: .components_prepare
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - qubes-builder.tar.xz
+      - pull-requests.txt
+  variables:
+    GIT_CLONE_FAST: 0
+    BUILDERCONF: scripts/gitlab-builder.conf
+  script:
+    # prepare for dummy value, actual sources are downloaded later
+    - ~/qubes-builder/scripts/gitlab-prepare "builder-rpm"
+    - git config --global user.email "user@example.com"
+    - git config --global user.name "builder"
+    - ./scripts/get-prs-sources
+    - echo INCREMENT_DEVEL_VERSIONS = 1 >> ~/qubes-builder/scripts/gitlab-builder.conf
+    - tar cJf $CI_PROJECT_DIR/qubes-builder.tar.xz --strip-components=1 -C ~/ qubes-builder
+
+publish:repo:
+  # we enforce tags to not override it
+  tags:
+    - docker
+  needs:
+    # for qubes-packages-mirror-repo/*
+    - build:dom0-fc32
+    - build:vm-buster
+    - build:vm-bullseye
+    - build:vm-fc33
+    - build:vm-fc34
+  stage: publish
+  artifacts:
+    expire_in: 7 days
+    paths:
+    - repo
+  script:
+    - sudo dnf -y install rpm-sign
+    - gpg --generate-key --batch < scripts/repo-key.gpgbatch
+    - ./scripts/combine-and-sign-repo "$PWD/qubes-packages-mirror-repo" "$PWD/repo" TEST
+    - gpg -a --export > repo/key.pub
+
+publish:openqa:
+  tags:
+    - docker
+  needs:
+    # for pull-requests.txt
+    - prep:sources
+    - publish:repo
+  stage: publish
+  script:
+    - ./scripts/start-openqa

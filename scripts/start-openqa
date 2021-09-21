@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -ex
+
+# ugh, extracting URL to another job...
+job_url=$(curl -s "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/pipelines/${CI_PIPELINE_ID}/jobs" | \
+     jq -r '.[] | select(.name == "publish:repo") | .web_url')
+echo "{\"PULL_REQUESTS\":\"$(cat pull-requests.txt)\", \"REPO_JOB\": \"${job_url}\"}" > params.txt
+curl -f --header "JOB-TOKEN: $CI_JOB_TOKEN" --header "Content-type: application/json" \
+     --data @params.txt https://sushi.qubes-os.org/api/run_test
