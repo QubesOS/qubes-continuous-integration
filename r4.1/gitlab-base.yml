@@ -84,6 +84,7 @@ stages:
   stage: build
   before_script:
     - tar xf $CI_PROJECT_DIR/qubes-builder.tar.xz -C ~/
+    - if [ -n "$DIST_DOM0" -a ! -e $CI_PROJECT_DIR/chroot.tar.xz ]; then curl -L "https://gitlab.com/api/v4/projects/QubesOS%2Fqubes-builder-rpm/jobs/artifacts/master/raw/chroot.tar.xz?job=chroot:dom0-$DIST_DOM0" -o $CI_PROJECT_DIR/chroot.tar.xz; fi
     - if [ -e $CI_PROJECT_DIR/chroot.tar.xz ]; then sudo tar xf $CI_PROJECT_DIR/chroot.tar.xz -C ~/qubes-builder; fi
 #    # we import binpkgs from template build artifacts
 #    - |
@@ -112,6 +113,7 @@ stages:
   stage: install
   before_script:
     - tar xf $CI_PROJECT_DIR/qubes-builder.tar.xz -C ~/
+    - if [ -n "$DIST_DOM0" -a ! -e $CI_PROJECT_DIR/chroot.tar.xz ]; then curl -L "https://gitlab.com/api/v4/projects/QubesOS%2Fqubes-builder-rpm/jobs/artifacts/master/raw/chroot.tar.xz?job=chroot:dom0-$DIST_DOM0-legacy" -o $CI_PROJECT_DIR/chroot.tar.xz; fi
     - sudo tar xf $CI_PROJECT_DIR/chroot.tar.xz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
@@ -132,6 +134,7 @@ stages:
   stage: repro
   before_script:
     - tar xf $CI_PROJECT_DIR/qubes-builder.tar.xz -C ~/
+    - if [ -n "$DIST_DOM0" -a ! -e $CI_PROJECT_DIR/chroot.tar.xz ]; then curl -L "https://gitlab.com/api/v4/projects/QubesOS%2Fqubes-builder-rpm/jobs/artifacts/master/raw/chroot.tar.xz?job=chroot:dom0-$DIST_DOM0-legacy" -o $CI_PROJECT_DIR/chroot.tar.xz; fi
     - sudo tar xf $CI_PROJECT_DIR/chroot.tar.xz -C ~/qubes-builder
     - mv $CI_PROJECT_DIR/qubes-packages-mirror-repo/* ~/qubes-builder/qubes-packages-mirror-repo/
   script:
