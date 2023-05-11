@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -ex
+
+dist="$1"
+
+if [ -z "$CI_PROJECT_DIR" ]; then
+    echo "Cannot find CI_PROJECT_DIR!"
+    exit 1
+fi
+
+if ! [ -e "$CI_PROJECT_DIR"/chroot.tar.xz ]; then
+    curl -L "https://gitlab.com/api/v4/projects/QubesOS%2Fqubes-builderv2/jobs/artifacts/main/raw/artifacts.tar.xz?job=cache-${dist}" -o "$CI_PROJECT_DIR"/artifacts.tar.xz
+fi
+
+tar xf "$CI_PROJECT_DIR"/artifacts.tar.xz
+mkdir -p ~/qubes-builder/artifacts/cache
+mv "$CI_PROJECT_DIR"/artifacts/cache/chroot ~/qubes-builder/artifacts/cache/
