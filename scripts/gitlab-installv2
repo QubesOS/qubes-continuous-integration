@@ -1,0 +1,73 @@
+#!/usr/bin/python3
+
+import os
+import sys
+from pathlib import Path, PurePath
+from qubesbuilder.distribution import QubesDistribution
+from qubesbuilder.executors.container import ContainerExecutor
+from qubesbuilder.log import init_logging
+
+init_logging(level="DEBUG")
+
+
+class CIError(Exception):
+    pass
+
+
+def main(qubes_distribution: QubesDistribution, repository: Path):
+    container_image = qubes_distribution.distribution
+    if qubes_distribution.fullname == "fedora":
+        pkgext = "rpm"
+        run_cmd = "dnf update && dnf -y install"
+    elif qubes_distribution.fullname == "centos-stream":
+        pkgext = "rpm"
+        run_cmd = "dnf update && dnf -y install"
+    elif qubes_distribution.fullname in ("debian", "ubuntu"):
+        pkgext = "deb"
+        run_cmd = "apt update && apt -y install"
+    elif qubes_distribution.fullname == "archlinux":
+        pkgext = "pkg.tar.zst"
+        run_cmd = "pacman -Sy  && pacman -U --noconfirm"
+    else:
+        raise CIError("Unsupported distribution!")
+
+    excluded_packages_host = (
+        os.environ.get("TRAVIS_INSTALL_EXCLUDE_DOM0", "").strip("\n").split()
+    )
+    excluded_packages = (
+            os.environ.get("TRAVIS_INSTALL_EXCLUDE", "").strip("\n").split()
+            + excluded_packages_host
+    )
+    packages = [
+        pkg
+        for pkg in repository.rglob(f"*.{pkgext}")
+        if pkg.name not in excluded_packages and not pkg.name.endswith(".src.rpm")
+    ]
+
+    copy_in = []
+    for pkg in packages:
+        copy_in.append((pkg, PurePath(f"/repository")))
+
+    if not packages:
+        print("Nothing to install!")
+        return
+
+    cmd = [f"{run_cmd} /repository/*.{pkgext}"]
+    executor = ContainerExecutor("docker", container_image)
+    executor.run(
+        cmd, copy_in=copy_in, override_container_cmd=True,
+        environment={"DEBIAN_FRONTEND": "noninteractive"}
+    )
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print("usage: repository_dir qubes_distribution")
+        sys.exit(1)
+    try:
+        dist = QubesDistribution(sys.argv[2])
+        repository_path = Path(sys.argv[1]).expanduser().resolve() / dist.distribution
+        main(dist, repository_path)
+    except Exception as e:
+        print(str(e))
+        sys.exit(1)

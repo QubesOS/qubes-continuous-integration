@@ -1,4 +1,4 @@
 include:
   - '/r4.2/gitlab-vm-fedora-build.yml'
-  # - '/r4.2/gitlab-vm-fedora-install.yml'
-  # - '/r4.2/gitlab-vm-fedora-repro.yml'
+  - '/r4.2/gitlab-vm-fedora-install.yml'
+#  - '/r4.2/gitlab-vm-fedora-repro.yml'

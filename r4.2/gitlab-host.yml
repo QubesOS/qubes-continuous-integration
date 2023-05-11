@@ -1,4 +1,4 @@
 include:
   - '/r4.2/gitlab-host-build.yml'
-#  - '/r4.2/gitlab-host-install.yml'
+  - '/r4.2/gitlab-host-install.yml'
 #  - '/r4.2/gitlab-host-repro.yml'

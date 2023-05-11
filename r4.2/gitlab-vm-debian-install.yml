@@ -1,0 +1,11 @@
+r4.2:install:vm-bullseye:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-bullseye
+
+r4.2:install:vm-bookworm:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-bookworm

@@ -1,4 +1,4 @@
 include:
   - '/r4.2/gitlab-vm-debian-build.yml'
-  # - '/r4.2/gitlab-vm-debian-install.yml'
-  # - '/r4.2/gitlab-vm-debian-repro.yml'
+  - '/r4.2/gitlab-vm-debian-install.yml'
+#  - '/r4.2/gitlab-vm-debian-repro.yml'

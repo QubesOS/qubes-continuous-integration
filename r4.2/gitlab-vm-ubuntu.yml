@@ -1,4 +1,4 @@
 include:
   - '/r4.2/gitlab-vm-ubuntu-build.yml'
-  # - '/r4.2/gitlab-vm-ubuntu-install.yml'
+  - '/r4.2/gitlab-vm-ubuntu-install.yml'
   # - '/r4.2/gitlab-vm-ubuntu-repro.yml'

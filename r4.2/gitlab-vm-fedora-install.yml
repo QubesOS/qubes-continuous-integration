@@ -1,0 +1,17 @@
+r4.2:install:vm-fc36:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-fc36
+
+r4.2:install:vm-fc37:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-fc37
+
+r4.2:install:vm-fc38:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-fc38

@@ -1,3 +1,4 @@
 include:
   - '/r4.2/gitlab-vm-centos-build.yml'
-  # - '/r4.2/gitlab-vm-centos-install.yml'
+  - '/r4.2/gitlab-vm-centos-install.yml'
+#  - '/r4.2/gitlab-vm-centos-repro.yml'
