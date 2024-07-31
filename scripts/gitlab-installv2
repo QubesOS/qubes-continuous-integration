@@ -5,9 +5,9 @@ import sys
 from pathlib import Path, PurePath
 from qubesbuilder.distribution import QubesDistribution
 from qubesbuilder.executors.container import ContainerExecutor
-from qubesbuilder.log import init_logging
+from qubesbuilder.log import init_logger
 
-init_logging(level="DEBUG")
+init_logger(verbose=True)
 
 
 class CIError(Exception):

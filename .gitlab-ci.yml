@@ -5,6 +5,9 @@ include:
   - '/r4.3/gitlab-vm-fedora-build.yml'
   - '/r4.3/gitlab-vm-debian-build.yml'
   - '/r4.3/gitlab-vm-archlinux-build.yml'
+  - '/r4.3/gitlab-vm-fedora-install.yml'
+  - '/r4.3/gitlab-vm-debian-install.yml'
+  - '/r4.3/gitlab-vm-archlinux-install.yml'
 
 workflow:
   rules:
