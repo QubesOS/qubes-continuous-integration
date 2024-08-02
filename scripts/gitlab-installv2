@@ -5,11 +5,11 @@ import sys
 from pathlib import Path, PurePath
 from qubesbuilder.distribution import QubesDistribution
 from qubesbuilder.executors.container import ContainerExecutor
-from qubesbuilder.log import init_logger, get_logger
+from qubesbuilder.log import init_logger, QubesBuilderLogger
 
 init_logger(verbose=True)
 
-logger = get_logger("gitlab-installv2")
+logger = QubesBuilderLogger.getChild("gitlab-installv2")
 
 class CIError(Exception):
     pass
