@@ -38,6 +38,7 @@ distributions:
   - vm-fc39
   - vm-fc40
   - vm-fc41
+  - vm-fc42
   - vm-archlinux
   - vm-jammy
   - vm-noble
@@ -61,6 +62,18 @@ distributions:
         - selinux
   - fedora-41-minimal:
       dist: fc41
+      flavor: minimal
+  - fedora-42:
+      dist: fc42
+      options:
+        - selinux
+  - fedora-42-xfce:
+      dist: fc42
+      flavor: xfce
+      options:
+        - selinux
+  - fedora-42-minimal:
+      dist: fc42
       flavor: minimal
   - debian-12:
       dist: bookworm

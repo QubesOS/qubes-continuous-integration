@@ -7,3 +7,8 @@ r4.3:build:vm-fc41:
   extends: .r4.3_components_build
   needs:
     - r4.3:prep:sources
+
+r4.3:build:vm-fc42:
+  extends: .r4.3_components_build
+  needs:
+    - r4.3:prep:sources
