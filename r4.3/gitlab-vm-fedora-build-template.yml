@@ -27,13 +27,3 @@ r4.3:build:fedora-42-minimal:
   extends: .r4.3_templates_build
   needs:
     - r4.3:prep:sources
-
-r4.3:build:fedora-43:
-  extends: .r4.3_templates_build
-  needs:
-    - r4.3:prep:sources
-
-r4.3:build:fedora-43-minimal:
-  extends: .r4.3_templates_build
-  needs:
-    - r4.3:prep:sources
