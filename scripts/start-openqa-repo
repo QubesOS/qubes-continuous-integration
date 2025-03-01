@@ -28,6 +28,9 @@ fi
 if [ -n "$QUBES_TEST_MGMT_TPL" ]; then
   echo ", \"QUBES_TEST_MGMT_TPL\": \"$QUBES_TEST_MGMT_TPL\"" >> params.txt
 fi
+if [ -n "$DISTUPGRADE_TEMPLATES" ]; then
+  echo ", \"DISTUPGRADE_TEMPLATES\": \"$DISTUPGRADE_TEMPLATES\"" >> params.txt
+fi
 echo "}" >> params.txt
 
 curl -f --header "JOB-TOKEN: $CI_JOB_TOKEN" --header "Content-type: application/json" \
