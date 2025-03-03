@@ -13,6 +13,21 @@ r4.2:build:debian-12-xfce:
   needs:
     - r4.2:prep:sources
 
+r4.2:build:debian-13:
+  extends: .r4.2_templates_build
+  needs:
+    - r4.2:prep:sources
+
+r4.2:build:debian-13-minimal:
+  extends: .r4.2_templates_build
+  needs:
+    - r4.2:prep:sources
+
+r4.2:build:debian-13-xfce:
+  extends: .r4.2_templates_build
+  needs:
+    - r4.2:prep:sources
+
 r4.2:build:whonix-gateway-17:
   extends: .r4.2_templates_build
   needs:
