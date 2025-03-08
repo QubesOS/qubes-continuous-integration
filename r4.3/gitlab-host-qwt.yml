@@ -1,14 +1,20 @@
-variables:
-  SUBMODULE_OF: qubes-windows-tools-cross
-
-r4.3:build:host-qwt:
-  extends: .r4.3_components_build
-  needs:
-    - r4.3:prep:sources
-#    - project: QubesOS/qubes-builder-rpm
-#      ref: master
-#      job: chroot:dom0-fc32
-#      artifacts: true
+r4.3:prep:sources-qwt:
+  extends: .r4.3_components_prepare
   variables:
-    DIST: "host-fc41"
-    COMPONENT: qubes-windows-tools-cross
+    COMPONENTS_GROUP: "vmm-xen-windows-pvdrivers core-vchan-xen windows-utils core-qubesdb core-agent-windows gui-common gui-agent-windows installer-qubes-os-windows-tools"
+
+r4.3:build:vm-win10:
+  extends: .r4.3_components_build
+  tags:
+  - qubes-windows
+  needs:
+    - r4.3:prep:sources-qwt
+
+#r4.3:build:host-qwt:
+#  extends: .r4.3_components_build
+#  needs:
+#    - r4.3:prep:sources
+#    - r4.3:build:vm-win10
+#  variables:
+#    DIST: "host-fc41"
+#    COMPONENT: installer-qubes-os-windows-tools

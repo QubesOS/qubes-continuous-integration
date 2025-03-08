@@ -30,9 +30,28 @@ use-qubes-repo:
       branch: main
   - zfs
   - zfs-dkms
+  - vmm-xen-windows-pvdrivers
+  - windows-utils
+  - core-agent-windows
+  - gui-agent-windows
+  - installer-qubes-os-windows-tools
 
 distributions:
   - host-fc41
+  - vm-win10:
+     stages:
+     - build:
+         configuration: release
+         sign-qube: win-sign-test
+         sign-key-name: "Qubes Windows Tools"
+         test-sign: true
+         executor:
+           type: windows
+           options:
+             dispvm: win-builder-dvm
+             user: user
+             ewdk: /home/user/ewdk.iso
+             threads: 2
   - vm-bookworm
   - vm-trixie
   - vm-fc39
