@@ -69,6 +69,7 @@ stages:
     - docker tag registry.gitlab.com/qubesos/docker-images/qubes-builder-fedora:latest qubes-builder-fedora:latest
     # Extract from prepare stage qubes-builder directory
     - tar xf $CI_PROJECT_DIR/qubes-builder.tar.xz -C ~/
+    - if [ -d $CI_PROJECT_DIR/artifacts/components ]; then rsync -av --remove-source-files $CI_PROJECT_DIR/artifacts/components ~/qubes-builder/artifacts/; fi
     - ~/qubes-builder/gitlab-chrootv2 "${DIST-${CI_JOB_NAME#r4.3:build:}}" || echo "$(tput bold)$(tput setaf 3)An error occurred while fetching chroot. Skipping...$(tput sgr0)"
   script:
     - ~/qubes-builder/gitlab-buildv2 "${COMPONENT-$CI_PROJECT_DIR}" "${DIST-${CI_JOB_NAME#r4.3:build:}}"
