@@ -15,6 +15,10 @@ qb_opts=("--option" "+components+linux-kernel:branch=main" )
 
 components=""
 
+components_group="$2"
+# include group only if some part of it got a PR
+include_group=
+
 cd "$BUILDER_INSTANCE" || exit 1
 
 prs_details=()
@@ -49,7 +53,22 @@ for pr in $prs; do
     # fetch new tarballs if necessary
     ./qb "${qb_opts[@]}" -c "${pr_component}" package fetch
     components="$components $pr_component"
+    if [ -n "$components_group" ] && [[ "$components_group" = *" $pr_component "* ]]; then
+        include_group=true
+    fi
 done
+
+# fetch remaining components in the group
+if [ -n "$include_group" ]; then
+    for component in $components_group; do
+        if [ -d "artifacts/sources/$component" ]; then
+            # already fetched
+            continue
+        fi
+        ./qb "${qb_opts[@]}" -c "$component" package fetch
+        components="$components $component"
+    done
+fi
 
 # reorder and deduplicate components, according to canonical order in the example config
 desired_order=$(./qb config get-components)
