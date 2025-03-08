@@ -49,7 +49,7 @@ stages:
     - mv ~/qubes-continuous-integration/scripts/gitlab-builderv2-r4.3.yml ~/qubes-builder/builder.yml
     - tree ~/qubes-builder/
   script:
-    - ~/qubes-builder/gitlab-preparev2 "$CI_PROJECT_DIR" $SUBMODULE_OF
+    - ~/qubes-builder/gitlab-preparev2 "$CI_PROJECT_DIR" "$SUBMODULE_OF" "$COMPONENTS_GROUP"
     - tar cJf $CI_PROJECT_DIR/qubes-builder.tar.xz --strip-components=1 -C ~/ qubes-builder
   after_script:
     - sudo rm -rf $CI_PROJECT_DIR/artifacts
