@@ -28,13 +28,45 @@ use-qubes-repo:
   - builder-archlinux:
       packages: false
       branch: main
+  - core-vchan-xen:
+      branch: omeg/builder-v2
+      url: https://github.com/omeg/qubes-core-vchan-xen
+      maintainers:
+      - CE8060B48282B234AE0A7815D32BF219E67BA830
+      verification-mode: less-secure-signed-commits-sufficient
+  - core-qubesdb:
+      branch: omeg/builder-v2
+      url: https://github.com/omeg/qubes-core-qubesdb
+      maintainers:
+      - CE8060B48282B234AE0A7815D32BF219E67BA830
+      verification-mode: less-secure-signed-commits-sufficient
   - zfs
   - zfs-dkms
   - vmm-xen-windows-pvdrivers
-  - windows-utils
-  - core-agent-windows
-  - gui-agent-windows
-  - installer-qubes-os-windows-tools
+  - windows-utils:
+      branch: omeg/builder-v2
+      url: https://github.com/omeg/qubes-windows-utils
+      maintainers:
+      - CE8060B48282B234AE0A7815D32BF219E67BA830
+      verification-mode: less-secure-signed-commits-sufficient
+  - core-agent-windows:
+      branch: omeg/builder-v2
+      url: https://github.com/omeg/qubes-core-agent-windows
+      maintainers:
+      - CE8060B48282B234AE0A7815D32BF219E67BA830
+      verification-mode: less-secure-signed-commits-sufficient
+  - gui-agent-windows:
+      branch: omeg/builder-v2
+      url: https://github.com/omeg/qubes-gui-agent-windows
+      maintainers:
+      - CE8060B48282B234AE0A7815D32BF219E67BA830
+      verification-mode: less-secure-signed-commits-sufficient
+  - installer-qubes-os-windows-tools:
+      branch: omeg/win10
+      url: https://github.com/omeg/qubes-installer-windows-tools
+      maintainers:
+      - CE8060B48282B234AE0A7815D32BF219E67BA830
+      verification-mode: less-secure-signed-commits-sufficient
 
 distributions:
   - host-fc41
