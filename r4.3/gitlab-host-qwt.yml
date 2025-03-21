@@ -23,3 +23,9 @@ r4.3:build:host-qwt:
   variables:
     DIST: "host-fc41"
     COMPONENT: qubes-installer-qubes-os-windows-tools
+
+r4.3:publish:repo-qwt:
+  extends: .r4.3_openqa_repo
+  needs:
+    - r4.3:prep:sources
+    - r4.3:build:host-qwt
