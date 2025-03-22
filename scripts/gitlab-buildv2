@@ -44,6 +44,8 @@ if [ "$component_name" = "vmm-xen-unified" ]; then
     fi
 fi
 
+trap "find artifacts; echo ===; cat artifacts/components/installer-qubes-os-windows-tools/noversion/devel; echo ===" ERR
+
 # if prep:sources added components list to the config, use that instead
 if grep -q '^components:$' builder.yml; then
     # Run all stages
