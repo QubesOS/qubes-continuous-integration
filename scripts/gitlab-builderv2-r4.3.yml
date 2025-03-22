@@ -28,6 +28,15 @@ use-qubes-repo:
   - builder-archlinux:
       packages: false
       branch: main
+  - installer-qubes-os-windows-tools:
+      host-fc41:
+        stages:
+          - prep:
+              needs:
+                - component: installer-qubes-os-windows-tools
+                  distribution: vm-win10
+                  stage: build
+                  build: vs2022/installer.sln
   - zfs
   - zfs-dkms
 
