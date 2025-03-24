@@ -35,10 +35,8 @@ distributions:
   - vm-bullseye
   - vm-bookworm
   - vm-trixie
-  - vm-fc37
-  - vm-fc38
-  - vm-fc39
   - vm-fc40
+  - vm-fc41
   - vm-centos-stream8
   - vm-archlinux
   - vm-focal
@@ -46,19 +44,19 @@ distributions:
   - vm-noble
 
 +templates:
-  - fedora-38:
-      dist: fc38
+  - fedora-40:
+      dist: fc40
       options:
         - selinux
-  - fedora-38-minimal:
-      dist: fc38
+  - fedora-40-minimal:
+      dist: fc40
       flavor: minimal
-  - fedora-39:
-      dist: fc39
+  - fedora-41:
+      dist: fc41
       options:
         - selinux
-  - fedora-39-minimal:
-      dist: fc39
+  - fedora-41-minimal:
+      dist: fc41
       flavor: minimal
   - debian-12:
       dist: bookworm
