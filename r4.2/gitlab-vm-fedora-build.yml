@@ -1,9 +1,9 @@
-r4.2:build:vm-fc39:
+r4.2:build:vm-fc40:
   extends: .r4.2_components_build
   needs:
     - r4.2:prep:sources
 
-r4.2:build:vm-fc40:
+r4.2:build:vm-fc41:
   extends: .r4.2_components_build
   needs:
     - r4.2:prep:sources

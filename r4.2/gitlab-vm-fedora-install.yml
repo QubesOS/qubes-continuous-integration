@@ -1,11 +1,11 @@
-r4.2:install:vm-fc39:
-  extends: .r4.2_components_install
-  needs:
-    - r4.2:prep:sources
-    - r4.2:build:vm-fc39
-
 r4.2:install:vm-fc40:
   extends: .r4.2_components_install
   needs:
     - r4.2:prep:sources
     - r4.2:build:vm-fc40
+
+r4.2:install:vm-fc41:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-fc41

@@ -1,19 +1,19 @@
-r4.2:build:fedora-38:
+r4.2:build:fedora-40:
   extends: .r4.2_templates_build
   needs:
     - r4.2:prep:sources
 
-r4.2:build:fedora-38-minimal:
+r4.2:build:fedora-40-minimal:
   extends: .r4.2_templates_build
   needs:
     - r4.2:prep:sources
 
-r4.2:build:fedora-39:
+r4.2:build:fedora-41:
   extends: .r4.2_templates_build
   needs:
     - r4.2:prep:sources
 
-r4.2:build:fedora-39-minimal:
+r4.2:build:fedora-41-minimal:
   extends: .r4.2_templates_build
   needs:
     - r4.2:prep:sources
