@@ -53,8 +53,7 @@ if [ -n "$components_group" ] && [[ "$components_group" = *" $component_name "* 
         fi
         ./qb "${qb_opts[@]}" -c "$component" package fetch
     done
-    printf "components:\n" >> builder.yml
-    printf -- '- %s\n' $components_group >> builder.yml
+    printf -- '-c %s\n' $components_group | sort |uniq > components.opts
 fi
 
 if $submodule; then

@@ -70,13 +70,5 @@ if [ -n "$include_group" ]; then
     done
 fi
 
-# reorder and deduplicate components, according to canonical order in the example config
-desired_order=$(./qb config get-components)
-components_filter_re="^$(echo $components|sed 's/ /\$\\|^/g')\$"
-echo "components pre: $components"
-components=$(echo "$desired_order"|grep "$components_filter_re"|uniq)
-echo "components post: $(echo $components)"
-
-printf "components:\n" >> $BUILDER_INSTANCE/builder.yml
-printf -- '- %s\n' $components >> $BUILDER_INSTANCE/builder.yml
+printf -- '-c %s\n' $components | sort |uniq > components.opts
 echo "${prs_details[@]}" > "$CI_PROJECT_DIR/pull-requests.txt"

@@ -44,10 +44,10 @@ if [ "$component_name" = "vmm-xen-unified" ]; then
     fi
 fi
 
-# if prep:sources added components list to the config, use that instead
-if grep -q '^components:$' builder.yml; then
+# if prep:sources added components list, use that instead
+if [ -e components.opts ]; then
     # Run all stages
-    ./qb "${qb_opts[@]}" -d "${dist}" package all
+    ./qb "${qb_opts[@]}" $(cat components.opts) -d "${dist}" package all
 else
     # Run all stages
     qb_opts+=( -o +components+"$component_name" )
