@@ -1,6 +1,7 @@
 include:
   - '/r4.3/gitlab-base.yml'
-  - '/r4.3/gitlab-host-build.yml'
+# host build job defined explicitly below, with slight modification
+#  - '/r4.3/gitlab-host-build.yml'
   - '/r4.3/gitlab-host-vm-openqa.yml'
   - '/r4.3/gitlab-vm-fedora-build.yml'
   - '/r4.3/gitlab-vm-debian-build.yml'
@@ -32,14 +33,35 @@ r4.3:prep:sources:
     paths:
       - qubes-builder.tar.xz
       - pull-requests.txt
+  variables:
+    COMPONENTS_GROUP: " vmm-xen-windows-pvdrivers core-vchan-xen windows-utils core-qubesdb core-agent-windows gui-common gui-agent-windows installer-qubes-os-windows-tools "
   script:
     - git config --global user.email "user@example.com"
     - git config --global user.name "builder"
     - cp ./scripts/gitlab-*v2 ~/qubes-builder/
     - cp ./scripts/repo-key.gpgbatch ~/qubes-builder/
     - cp ./scripts/combine-and-sign-repo ~/qubes-builder/
-    - ./scripts/get-prs-sourcesv2 "$PR_LABEL"
+    - ./scripts/get-prs-sourcesv2 "$PR_LABEL" "$COMPONENTS_GROUP"
     - tar cJf $CI_PROJECT_DIR/qubes-builder.tar.xz --strip-components=1 -C ~/ qubes-builder
+
+# custom host build jobs to include also QWT but reuse common sources
+r4.3:build:vm-win10:
+  extends: .r4.3_components_build
+  tags:
+  - qubes-windows
+  needs:
+  - r4.3:prep:sources
+  artifacts:
+    paths:
+      - artifacts/repository
+      - artifacts/components
+      - artifacts/logs
+
+r4.3:build:host-fc41:
+  extends: .r4.3_components_build
+  needs:
+    - r4.3:prep:sources
+    - r4.3:build:vm-win10
 
 publish:openqa:
   tags:

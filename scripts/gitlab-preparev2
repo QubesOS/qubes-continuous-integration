@@ -17,6 +17,8 @@ else
     component_name="$(basename "$component_dir")"
 fi
 
+components_group="$3"
+
 if [ -z "$component_dir" ]; then
     echo "Please provide component directory!"
     exit 1
@@ -42,6 +44,17 @@ fi
 read -r -a qb_opts <<< "${qb_opts}"
 qb_opts+=( -o +components+"$component_name" )
 ./qb "${qb_opts[@]}" -c "$component_name" package fetch
+
+# fetch remaining components in the group
+if [ -n "$components_group" ] && [[ "$components_group" = *" $component_name "* ]]; then
+    for component in $components_group; do
+        if [ "$component" = "$component_name" ]; then
+            continue
+        fi
+        ./qb "${qb_opts[@]}" -c "$component" package fetch
+    done
+    printf -- '-c %s\n' $components_group | sort |uniq > components.opts
+fi
 
 if $submodule; then
     submodule_name=$(basename "$component_dir")
