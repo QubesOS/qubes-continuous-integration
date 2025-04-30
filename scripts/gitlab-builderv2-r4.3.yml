@@ -28,8 +28,6 @@ use-qubes-repo:
   - builder-archlinux:
       packages: false
       branch: main
-  - zfs
-  - zfs-dkms
 
 distributions:
   - host-fc41
