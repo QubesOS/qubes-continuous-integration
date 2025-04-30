@@ -28,6 +28,8 @@ use-qubes-repo:
   - builder-archlinux:
       packages: false
       branch: main
+  - ansible:
+      verification-mode: insecure-skip-checking
 
 distributions:
   - host-fc41
