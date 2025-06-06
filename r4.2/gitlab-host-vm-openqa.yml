@@ -4,6 +4,6 @@ r4.2:publish:repo:
     - r4.2:prep:sources
     - r4.2:build:host-fc37
     - r4.2:build:vm-bookworm
-    - r4.2:build:vm-fc39
-    - r4.2:build:vm-fc40
+    - r4.2:build:vm-fc41
+    - r4.2:build:vm-fc42
     - r4.2:build:vm-archlinux
