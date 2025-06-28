@@ -8,4 +8,4 @@ r4.3:install:vm-trixie:
   extends: .r4.3_components_install
   needs:
     - r4.3:prep:sources
-    - r4.3:build:vm-bookworm
+    - r4.3:build:vm-trixie
