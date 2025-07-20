@@ -7,3 +7,4 @@ r4.2:publish:repo:
     - r4.2:build:vm-fc41
     - r4.2:build:vm-fc42
     - r4.2:build:vm-archlinux
+    - r4.2:build:vm-gentoo

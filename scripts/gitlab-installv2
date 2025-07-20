@@ -57,6 +57,9 @@ def main(release: str, qubes_distribution: QubesDistribution, repository: Path):
             f"sed -i -e 's/4\\.2/{release}/g ' /etc/pacman.conf && "
             "pacman -Sy --noprogressbar  && pacman -U --noconfirm --noprogressbar"
         )
+    elif qubes_distribution.fullname == "gentoo":
+        pkgext = "ebuild"
+        run_cmd = "emerge --sync && emerge --usepkg"
     else:
         raise CIError("Unsupported distribution!")
 

@@ -8,6 +8,7 @@ DOCKER_IMAGES ?= \
 	vm-bullseye \
 	vm-archlinux \
 	vm-centos-stream8 \
+	vm-gentoo \
 	vm-jammy \
 	vm-fc39 \
 	vm-fc40 \

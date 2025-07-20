@@ -43,6 +43,7 @@ distributions:
   - vm-focal
   - vm-jammy
   - vm-noble
+  - vm-gentoo
 
 +templates:
   - fedora-40:
@@ -99,6 +100,8 @@ distributions:
       dist: centos-stream10
   - archlinux:
       dist: archlinux
+  - gentoo:
+      dist: gentoo
 
 executor:
   type: docker
