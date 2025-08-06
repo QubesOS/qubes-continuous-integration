@@ -145,3 +145,10 @@ stages:
   - upload:
       executor:
         type: local
+
+mirrors:
+  archlinux:
+    - https://archlinux.mirrors.ovh.net/archlinux
+    - https://mirrors.gandi.net/archlinux
+    - https://arch.yourlabs.org
+    - https://mirrors.edge.kernel.org/archlinux
