@@ -35,7 +35,6 @@ distributions:
   - vm-bullseye
   - vm-bookworm
   - vm-trixie
-  - vm-fc40
   - vm-fc41
   - vm-fc42
   - vm-centos-stream8
@@ -45,13 +44,6 @@ distributions:
   - vm-noble
 
 +templates:
-  - fedora-40:
-      dist: fc40
-      options:
-        - selinux
-  - fedora-40-minimal:
-      dist: fc40
-      flavor: minimal
   - fedora-41:
       dist: fc41
       options:

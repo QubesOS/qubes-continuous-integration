@@ -57,13 +57,6 @@ distributions:
   - vm-noble
 
 +templates:
-  - fedora-40:
-      dist: fc40
-      options:
-        - selinux
-  - fedora-40-minimal:
-      dist: fc40
-      flavor: minimal
   - fedora-41:
       dist: fc41
       options:

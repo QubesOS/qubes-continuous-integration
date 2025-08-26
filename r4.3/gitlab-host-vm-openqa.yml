@@ -5,7 +5,6 @@ r4.3:publish:repo:
     - r4.3:build:host-fc41
     - r4.3:build:vm-bookworm
     - r4.3:build:vm-trixie
-    - r4.3:build:vm-fc40
     - r4.3:build:vm-fc41
     - r4.3:build:vm-fc42
     - r4.3:build:vm-archlinux
