@@ -11,7 +11,8 @@ DOCKER_IMAGES ?= \
 	vm-jammy \
 	vm-fc39 \
 	vm-fc41 \
-	vm-fc42
+	vm-fc42 \
+	vm-fc43
 
 .ONESHELL:
 build: $(DOCKER_IMAGES:%=build-%)
