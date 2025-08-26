@@ -18,3 +18,10 @@ r4.3:repro:vm-fc42:
     - r4.3:prep:sources
     - r4.3:build:vm-fc42
   allow_failure: true
+
+r4.3:repro:vm-fc43:
+  extends: .r4.3_components_repro
+  needs:
+    - r4.3:prep:sources
+    - r4.3:build:vm-fc43
+  allow_failure: true

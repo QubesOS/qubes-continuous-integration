@@ -49,10 +49,9 @@ distributions:
              threads: 2
   - vm-bookworm
   - vm-trixie
-  - vm-fc39
-  - vm-fc40
   - vm-fc41
   - vm-fc42
+  - vm-fc43
   - vm-archlinux
   - vm-jammy
   - vm-noble
