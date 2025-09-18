@@ -5,7 +5,6 @@
     - docker
   variables:
     BLACK_ARGS: -l80 -v --diff --color --check
-  allow_failure: true
   before_script:
     - if [ "$EUID" -ne 0 ]; then DNF="sudo dnf"; fi
     - ${DNF:-dnf} install -y python3-black python3-pylint python3-pip
