@@ -36,7 +36,7 @@ distributions:
   - vm-win10:
      stages:
      - build:
-         configuration: debug
+         configuration: release
          sign-qube: win-sign-test
          sign-key-name: "Qubes Windows Tools"
          test-sign: true
