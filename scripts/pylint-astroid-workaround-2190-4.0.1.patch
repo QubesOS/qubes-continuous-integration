@@ -1,0 +1,21 @@
+diff --git a/builder.py.orig b/builder.py
+index 09a787a..7e6c4b0 100644
+--- a/builder.py.orig
++++ b/builder.py
+@@ -168,13 +168,13 @@ class AstroidBuilder(raw_building.InspectBuilder):
+                 for symbol, _ in from_node.names:
+                     module.future_imports.add(symbol)
+             self.add_from_names_to_locals(from_node, global_names)
++        # Visit the transforms
++        if self._apply_transforms:
++            module = self._manager.visit_transforms(module)
+         # handle delayed assattr nodes
+         for delayed in builder._delayed_assattr:
+             self.delayed_assattr(delayed)
+ 
+-        # Visit the transforms
+-        if self._apply_transforms:
+-            module = self._manager.visit_transforms(module)
+         return module
+ 
+     def _data_build(
