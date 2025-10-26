@@ -28,7 +28,7 @@ r4.3:build:debian-13-xfce:
   needs:
     - r4.3:prep:sources
 
-r4.3:build:whonix-gateway-17:
+r4.3:build:whonix-gateway-18:
   extends: .r4.3_templates_build
   needs:
     - r4.3:prep:sources
