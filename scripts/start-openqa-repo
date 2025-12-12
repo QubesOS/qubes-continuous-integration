@@ -31,6 +31,12 @@ fi
 if [ -n "$DISTUPGRADE_TEMPLATES" ]; then
   echo ", \"DISTUPGRADE_TEMPLATES\": \"$DISTUPGRADE_TEMPLATES\"" >> params.txt
 fi
+if [ -n "$TEST" ]; then
+  echo ", \"TEST\": \"$TEST\"" >> params.txt
+fi
+if [ -n "$MACHINE" ]; then
+  echo ", \"MACHINE\": \"$MACHINE\"" >> params.txt
+fi
 echo "}" >> params.txt
 
 curl -f --header "JOB-TOKEN: $CI_JOB_TOKEN" --header "Content-type: application/json" \

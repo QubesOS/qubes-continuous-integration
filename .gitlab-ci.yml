@@ -33,6 +33,10 @@ variables:
     description: "Kernel to use in tests - 'stable' or 'latest'"
   QUBES_TEST_MGMT_TPL:
     description: "Template to use for default-mgmt-dvm"
+  TEST:
+    description: "Comma-separated list of tests to run - instead of all of them"
+  MACHINE:
+    description: "Comma-separated list of 'machines' to limit the test run on"
 
 r4.3:prep:sources:
   extends: .r4.3_components_prepare
