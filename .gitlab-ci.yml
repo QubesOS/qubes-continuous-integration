@@ -25,6 +25,14 @@ variables:
     description: "List of templates to run tests on (space separated)"
   DEFAULT_TEMPLATE:
     description: "Template to set as default, can be abbreviated like 'debian' for latest Debian version"
+  DISTUPGRADE_TEMPLATES:
+    description: "Templates to perform distupgrade on (like Fedora 41->42) before tests"
+  FLAVOR:
+    description: "Test flavor in openQA - common values include 'pull-requests', 'kernel'"
+  KERNEL_VERSION:
+    description: "Kernel to use in tests - 'stable' or 'latest'"
+  QUBES_TEST_MGMT_TPL:
+    description: "Template to use for default-mgmt-dvm"
 
 r4.3:prep:sources:
   extends: .r4.3_components_prepare
