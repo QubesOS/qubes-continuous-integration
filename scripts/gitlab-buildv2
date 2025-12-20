@@ -47,11 +47,11 @@ fi
 # if prep:sources added components list, use that instead
 if [ -e components.opts ]; then
     # Run all stages
-    ./qb "${qb_opts[@]}" $(cat components.opts) -d "${dist}" package all
+    ./qb "${qb_opts[@]}" $(cat components.opts) -d "${dist}" package build
 else
     # Run all stages
     qb_opts+=( -o +components+"$component_name" )
-    ./qb "${qb_opts[@]}" -c "$component_name" -d "${dist}" package all
+    ./qb "${qb_opts[@]}" -c "$component_name" -d "${dist}" package build
 fi
 
 mkdir -p artifacts/repository
