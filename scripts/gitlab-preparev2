@@ -40,6 +40,11 @@ if ! $submodule; then
     cp -a "$component_dir" "artifacts/sources/$component_name"
 fi
 
+# set high 'devel' number so package is newer than packages in the devel repo
+devel_dir="artifacts/components/$component_name/noversion"
+mkdir -p "$devel_dir"
+echo -n 1000 > "$devel_dir/devel"
+
 # Run fetch stage
 read -r -a qb_opts <<< "${qb_opts}"
 qb_opts+=( -o +components+"$component_name" )
@@ -51,6 +56,10 @@ if [ -n "$components_group" ] && [[ "$components_group" = *" $component_name "* 
         if [ "$component" = "$component_name" ]; then
             continue
         fi
+        # set high 'devel' number so package is newer than packages in the devel repo
+        devel_dir="artifacts/components/$component/noversion"
+        mkdir -p "$devel_dir"
+        echo -n 1000 > "$devel_dir/devel"
         ./qb "${qb_opts[@]}" -c "$component" package fetch
     done
     printf -- '-c %s\n' $components_group | sort |uniq > components.opts

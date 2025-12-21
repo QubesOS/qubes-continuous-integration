@@ -51,6 +51,10 @@ for pr in $prs; do
     git -C "artifacts/sources/${pr_component}" merge --no-edit --no-ff FETCH_HEAD || { echo "Merge conflict on $pr"; exit 1; }
     git -C "artifacts/sources/${pr_component}" submodule sync || { echo "Failed to refresh submodules after merging $pr"; exit 1; }
     git -C "artifacts/sources/${pr_component}" submodule update --init || { echo "Failed to refresh submodules after merging $pr"; exit 1; }
+    # set high 'devel' number so package is newer than packages in the devel repo
+    devel_dir="artifacts/components/$pr_component/noversion"
+    mkdir -p "$devel_dir"
+    echo -n 1000 > "$devel_dir/devel"
     # fetch new tarballs if necessary
     ./qb "${qb_opts[@]}" -c "${pr_component}" package fetch
     components="$components $pr_component"
