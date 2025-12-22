@@ -33,6 +33,8 @@ variables:
     description: "Kernel to use in tests - 'stable' or 'latest'"
   QUBES_TEST_MGMT_TPL:
     description: "Template to use for default-mgmt-dvm"
+  WHONIX_REPO:
+    description: "Which Whonix repository to enable (testers/developers)"
   TEST:
     description: "Comma-separated list of tests to run - instead of all of them"
   MACHINE:
