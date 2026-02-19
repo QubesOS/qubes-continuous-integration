@@ -75,5 +75,11 @@ if [ -n "$include_group" ]; then
     done
 fi
 
-printf -- '-c %s\n' $components | sort |uniq > components.opts
+if [ -n "$components" ]; then
+    printf -- '-c %s\n' $components | sort |uniq > components.opts
+else
+    # include some component (without packages), as no -c option is interpreted
+    # as "build everything"
+    printf -- '-c builder-rpm\n' > components.opts
+fi
 echo "${prs_details[@]}" > "$CI_PROJECT_DIR/pull-requests.txt"
