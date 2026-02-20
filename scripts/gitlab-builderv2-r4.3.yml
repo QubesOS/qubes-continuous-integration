@@ -49,26 +49,14 @@ distributions:
              threads: 2
   - vm-bookworm
   - vm-trixie
-  - vm-fc41
   - vm-fc42
   - vm-fc43
+  - vm-fc44
   - vm-archlinux
   - vm-jammy
   - vm-noble
 
 +templates:
-  - fedora-41:
-      dist: fc41
-      options:
-        - selinux
-  - fedora-41-xfce:
-      dist: fc41
-      flavor: xfce
-      options:
-        - selinux
-  - fedora-41-minimal:
-      dist: fc41
-      flavor: minimal
   - fedora-42:
       dist: fc42
       options:
@@ -92,6 +80,18 @@ distributions:
         - selinux
   - fedora-43-minimal:
       dist: fc43
+      flavor: minimal
+  - fedora-44-gnome:
+      dist: fc44
+      options:
+        - selinux
+  - fedora-44-xfce:
+      dist: fc44
+      flavor: xfce
+      options:
+        - selinux
+  - fedora-44-minimal:
+      dist: fc44
       flavor: minimal
   - debian-12:
       dist: bookworm
