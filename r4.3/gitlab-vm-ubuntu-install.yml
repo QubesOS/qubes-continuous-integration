@@ -1,9 +1,3 @@
-r4.3:install:vm-jammy:
-  extends: .r4.3_components_install
-  needs:
-    - r4.3:prep:sources
-    - r4.3:build:vm-jammy
-
 r4.3:install:vm-noble:
   extends: .r4.3_components_install
   needs:
