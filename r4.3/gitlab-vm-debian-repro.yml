@@ -3,3 +3,9 @@ r4.3:repro:vm-bookworm:
   needs:
     - r4.3:prep:sources
     - r4.3:build:vm-bookworm
+
+r4.3:repro:vm-trixie:
+  extends: .r4.3_components_repro
+  needs:
+    - r4.3:prep:sources
+    - r4.3:build:vm-trixie
