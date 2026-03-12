@@ -39,7 +39,7 @@ stages:
     - docker pull registry.gitlab.com/qubesos/docker-images/qubes-builder-fedora:latest
     - docker tag registry.gitlab.com/qubesos/docker-images/qubes-builder-fedora:latest qubes-builder-fedora:latest
     # Clone qubes-builderv2
-    - git clone https://github.com/QubesOS/qubes-builderv2 ~/qubes-builder
+    - git clone -b ${CI_BUILDER_BRANCH_REF:-main} ${CI_BUILDER_URL:-https://gitlab.com/QubesOS/qubes-builderv2} ~/qubes-builder
     # Clone and copy gitlab-ci builder configuration and scripts
     - git clone -b ${CI_BRANCH_REF:-main} https://github.com/QubesOS/qubes-continuous-integration ~/qubes-continuous-integration
     - mv ~/qubes-continuous-integration/scripts/gitlab-*v2 ~/qubes-builder/
