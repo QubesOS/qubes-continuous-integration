@@ -1,0 +1,11 @@
+devel:repro:vm-bookworm:
+  extends: .devel_components_repro
+  needs:
+    - devel:prep:sources
+    - devel:build:vm-bookworm
+
+devel:repro:vm-trixie:
+  extends: .devel_components_repro
+  needs:
+    - devel:prep:sources
+    - devel:build:vm-trixie

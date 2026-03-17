@@ -1,0 +1,4 @@
+devel:build:archlinux:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources

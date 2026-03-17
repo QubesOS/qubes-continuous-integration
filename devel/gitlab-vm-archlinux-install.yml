@@ -1,0 +1,5 @@
+devel:install:vm-archlinux:
+  extends: .devel_components_install
+  needs:
+    - devel:prep:sources
+    - devel:build:vm-archlinux

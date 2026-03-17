@@ -1,0 +1,5 @@
+devel:install:host-fc41:
+  extends: .devel_components_install
+  needs:
+    - devel:prep:sources
+    - devel:build:host-fc41

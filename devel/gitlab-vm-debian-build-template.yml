@@ -1,0 +1,34 @@
+devel:build:debian-12:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:debian-12-minimal:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:debian-12-xfce:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:debian-13:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:debian-13-minimal:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:debian-13-xfce:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:whonix-gateway-18:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources

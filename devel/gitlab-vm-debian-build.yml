@@ -1,0 +1,9 @@
+devel:build:vm-bookworm:
+  extends: .devel_components_build
+  needs:
+    - devel:prep:sources
+
+devel:build:vm-trixie:
+  extends: .devel_components_build
+  needs:
+    - devel:prep:sources

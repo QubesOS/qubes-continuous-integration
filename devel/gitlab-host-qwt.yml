@@ -1,0 +1,31 @@
+devel:prep:sources-qwt:
+  extends: .devel_components_prepare
+  variables:
+    COMPONENTS_GROUP: " vmm-xen-windows-pvdrivers core-vchan-xen windows-utils core-qubesdb core-agent-windows gui-common gui-agent-windows installer-qubes-os-windows-tools "
+
+devel:build:vm-win10:
+  extends: .devel_components_build
+  tags:
+  - qubes-windows
+  needs:
+  - devel:prep:sources-qwt
+  artifacts:
+    paths:
+      - artifacts/repository
+      - artifacts/components
+      - artifacts/logs
+
+devel:build:host-qwt:
+  extends: .devel_components_build
+  needs:
+    - devel:prep:sources
+    - devel:build:vm-win10
+  variables:
+    DIST: "host-fc41"
+    COMPONENT: qubes-installer-qubes-os-windows-tools
+
+devel:publish:repo-qwt:
+  extends: .devel_openqa_repo
+  needs:
+    - devel:prep:sources
+    - devel:build:host-qwt

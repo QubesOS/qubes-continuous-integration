@@ -1,0 +1,9 @@
+#devel:build:vm-focal:
+#  extends: .devel_components_build
+#  needs:
+#    - devel:prep:sources
+
+devel:build:vm-noble:
+  extends: .devel_components_build
+  needs:
+    - devel:prep:sources

@@ -1,0 +1,3 @@
+#include:
+#  - '/devel/gitlab-vm-archlinux-build.yml'
+#  - '/devel/gitlab-vm-archlinux-install.yml'

@@ -1,0 +1,5 @@
+devel:publish:repo:
+  extends: .devel_openqa_repo
+  needs:
+    - devel:prep:sources
+    - devel:build:host-fc41

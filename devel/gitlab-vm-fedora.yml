@@ -1,0 +1,4 @@
+include:
+  - '/devel/gitlab-vm-fedora-build.yml'
+  - '/devel/gitlab-vm-fedora-install.yml'
+  - '/devel/gitlab-vm-fedora-repro.yml'

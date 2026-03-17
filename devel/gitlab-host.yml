@@ -1,0 +1,4 @@
+include:
+  - '/devel/gitlab-host-build.yml'
+  - '/devel/gitlab-host-install.yml'
+  - '/devel/gitlab-host-repro.yml'

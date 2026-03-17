@@ -1,0 +1,4 @@
+include:
+  - '/devel/gitlab-vm-debian-build.yml'
+  - '/devel/gitlab-vm-debian-install.yml'
+  - '/devel/gitlab-vm-debian-repro.yml'
