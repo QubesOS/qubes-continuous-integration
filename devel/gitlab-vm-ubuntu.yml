@@ -1,5 +1,4 @@
-{}
-#include:
+include: []
 #  - '/devel/gitlab-vm-ubuntu-build.yml'
 #  - '/devel/gitlab-vm-ubuntu-install.yml'
 #  # - '/devel/gitlab-vm-ubuntu-repro.yml'
