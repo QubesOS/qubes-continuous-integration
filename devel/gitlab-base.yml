@@ -98,7 +98,7 @@ stages:
     - docker pull registry.gitlab.com/qubesos/docker-images/${DIST-${CI_JOB_NAME#devel:install:}}:latest
     - docker tag registry.gitlab.com/qubesos/docker-images/${DIST-${CI_JOB_NAME#devel:install:}}:latest ${DIST-${CI_JOB_NAME#devel:install:}}:latest
   script:
-    - python3 ~/qubes-builder/gitlab-installv2 ~/qubes-builder/artifacts/repository 4.3 "${DIST-${CI_JOB_NAME#devel:install:}}"
+    - python3 ~/qubes-builder/gitlab-installv2 ~/qubes-builder/artifacts/repository devel "${DIST-${CI_JOB_NAME#devel:install:}}"
   after_script:
     - sudo rm -rf $CI_PROJECT_DIR/artifacts
     - mv ~/qubes-builder/artifacts $CI_PROJECT_DIR/
@@ -121,7 +121,7 @@ stages:
     - docker pull registry.gitlab.com/qubesos/docker-images/${DIST-${CI_JOB_NAME#devel:repro:}}:latest
     - docker tag registry.gitlab.com/qubesos/docker-images/${DIST-${CI_JOB_NAME#devel:repro:}}:latest ${DIST-${CI_JOB_NAME#devel:repro:}}:latest
   script:
-    - python3 ~/qubes-builder/gitlab-reprotestv2 4.3 ~/qubes-builder/artifacts/repository ~/qubes-builder/artifacts/reprotest "${DIST-${CI_JOB_NAME#devel:repro:}}"
+    - python3 ~/qubes-builder/gitlab-reprotestv2 devel ~/qubes-builder/artifacts/repository ~/qubes-builder/artifacts/reprotest "${DIST-${CI_JOB_NAME#devel:repro:}}"
   after_script:
     - sudo rm -rf $CI_PROJECT_DIR/artifacts
     - mv ~/qubes-builder/artifacts $CI_PROJECT_DIR/
