@@ -8,4 +8,4 @@ devel:publish:repo:
     - devel:build:vm-fc42
     - devel:build:vm-fc43
     - devel:build:vm-fc44
-    - devel:build:vm-archlinux
+#    - devel:build:vm-archlinux
