@@ -10,6 +10,8 @@ RUN wget -O /tmp/qubes-debian-r4.2.asc https://raw.githubusercontent.com/QubesOS
 RUN gpg --dearmor < /tmp/qubes-debian-r4.2.asc > /usr/share/keyrings/qubes-archive-keyring-4.2.gpg
 RUN wget -O /tmp/qubes-debian-r4.3.asc https://raw.githubusercontent.com/QubesOS/qubes-secpack/main/keys/template-keys/qubes-release-4.3-debian.asc
 RUN gpg --dearmor < /tmp/qubes-debian-r4.3.asc > /usr/share/keyrings/qubes-archive-keyring-4.3.gpg
+RUN wget -O /tmp/qubes-debian-rdevel.asc https://raw.githubusercontent.com/QubesOS/qubes-builderv2/main/qubesbuilder/plugins/chroot_deb/keys/qubes-debian-rdevel.asc
+RUN gpg --dearmor < /tmp/qubes-debian-rdevel.asc > /usr/share/keyrings/qubes-archive-keyring-devel.gpg
 
 RUN wget -O /usr/local/bin/faketime https://raw.githubusercontent.com/rustybird/realfaketime/main/faketime
 RUN chmod +x /usr/local/bin/faketime

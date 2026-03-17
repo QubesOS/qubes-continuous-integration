@@ -2,6 +2,7 @@ FROM quay.io/fedora/fedora:44
 RUN dnf -y update && dnf -y install sudo ca-certificates wget gnupg dnf-plugins-core reprotest && dnf -y clean all
 RUN wget -O /etc/pki/rpm-gpg/RPM-GPG-KEY-qubes-4.2-primary https://raw.githubusercontent.com/QubesOS/qubes-builderv2/main/qubesbuilder/plugins/chroot_rpm/keys/RPM-GPG-KEY-qubes-4.2-primary
 RUN wget -O /etc/pki/rpm-gpg/RPM-GPG-KEY-qubes-4.3-primary https://raw.githubusercontent.com/QubesOS/qubes-builderv2/main/qubesbuilder/plugins/chroot_rpm/keys/RPM-GPG-KEY-qubes-4.3-primary
+RUN wget -O /etc/pki/rpm-gpg/RPM-GPG-KEY-qubes-devel-primary https://raw.githubusercontent.com/QubesOS/qubes-builderv2/main/qubesbuilder/plugins/chroot_rpm/keys/RPM-GPG-KEY-qubes-devel-primary
 RUN printf '\
 [qubes-current]\n\
 name=qubes-vm-current\n\
