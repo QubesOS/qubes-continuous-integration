@@ -32,8 +32,6 @@ def main(release: str, qubes_distribution: QubesDistribution, repository: Path):
     if qubes_distribution.fullname in ("fedora", "centos-stream"):
         pkgext = "rpm"
         repofile = "qubes.repo"
-        if qubes_distribution.package_set == "host":
-            repofile = "qubes-dom0.repo"
         run_cmd = (
             f"sed -i -e 's/4\\.[0-9]/{release}/g ' /etc/yum.repos.d/{repofile} && "
             "dnf -y --refresh update && dnf -y install --allowerasing"
