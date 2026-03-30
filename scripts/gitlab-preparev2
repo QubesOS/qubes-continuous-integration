@@ -38,6 +38,9 @@ if ! $submodule; then
     # Place Gitlab CI downloaded sources in artifacts/sources
     mkdir -p artifacts/sources
     cp -a "$component_dir" "artifacts/sources/$component_name"
+    # GitLab runner injects an [include] path into .git/config pointing to a
+    # runner-local file. Remove it so git works after archive extraction.
+    git -C "artifacts/sources/$component_name" config --local --remove-section include || true
 fi
 
 # set high 'devel' number so package is newer than packages in the devel repo
@@ -73,4 +76,5 @@ if $submodule; then
     fi
     rm -rf "artifacts/sources/$component_name/$submodule_name"
     cp -a "$component_dir" "artifacts/sources/$component_name/$submodule_name"
+    git -C "artifacts/sources/$component_name/$submodule_name" config --local --remove-section include || true
 fi
