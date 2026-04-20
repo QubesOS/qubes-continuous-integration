@@ -3,4 +3,4 @@ include:
   - '/r4.2/gitlab-vm-debian.yml'
   - '/r4.2/gitlab-vm-archlinux.yml'
   - '/r4.2/gitlab-vm-ubuntu.yml'
-#  - '/r4.2/gitlab-vm-gentoo.yml'
+  - '/r4.2/gitlab-vm-gentoo.yml'
