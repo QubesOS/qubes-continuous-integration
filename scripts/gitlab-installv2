@@ -51,8 +51,9 @@ def main(release: str, qubes_distribution: QubesDistribution, repository: Path):
         )
     elif qubes_distribution.fullname == "archlinux":
         pkgext = "pkg.tar.zst"
+        version_str = "devel" if release == "devel" else f"r{release}"
         run_cmd = (
-            f"sed -i -e 's/4\\.2/{release}/g ' /etc/pacman.conf && "
+            f"sed -i -e 's/r4\\.2/{version_str}/g ' /etc/pacman.conf && "
             "pacman -Sy --noprogressbar  && pacman -U --noconfirm --noprogressbar"
         )
     else:
