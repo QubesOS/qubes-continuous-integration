@@ -59,23 +59,24 @@ devel:prep:sources:
     - tar cJf $CI_PROJECT_DIR/qubes-builder.tar.xz --strip-components=1 -C ~/ qubes-builder
 
 # custom host build jobs to include also QWT but reuse common sources
-#devel:build:vm-win10:
-#  extends: .devel_components_build
-#  tags:
-#  - qubes-windows
-#  needs:
-#  - devel:prep:sources
-#  artifacts:
-#    paths:
-#      - artifacts/repository
-#      - artifacts/components
-#      - artifacts/logs
+devel:build:vm-win10:
+  extends: .devel_components_build
+  tags:
+  - qubes-windows
+  needs:
+  - devel:prep:sources
+  artifacts:
+    paths:
+      - artifacts/repository
+      - artifacts/components
+      - artifacts/logs
 
 devel:build:host-fc41:
   extends: .devel_components_build
   needs:
-    - devel:prep:sources
-#    - devel:build:vm-win10
+    - job: "devel:prep:sources"
+    - job: "devel:build:vm-win10"
+      optional: true
 
 publish:openqa:
   tags:
