@@ -12,3 +12,20 @@
   script:
     - black $BLACK_ARGS --extend-exclude artifacts/ ${DIR:-.}
     - if [ -e .pylintrc ] && [ "${SKIP_PYLINT}" != "1" ]; then pylint-3 $PYLINT_ARGS ${DIR:-.}; fi
+
+.shellcheck:
+  stage: checks
+  image: fedora:latest
+  tags:
+    - docker
+  variables:
+    SHELLCHECK_ARGS: -x -e SC1117
+  before_script:
+    - if [ "$EUID" -ne 0 ]; then DNF="sudo dnf"; fi
+    - ${DNF:-dnf} install -y ShellCheck git file
+  script:
+    - >-
+      git ls-files -z |
+      xargs -0 file --mime-type |
+      awk -F': *' '$2 == "text/x-shellscript" {print $1}' |
+      xargs -r shellcheck $SHELLCHECK_ARGS
