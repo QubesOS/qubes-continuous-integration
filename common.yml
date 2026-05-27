@@ -27,5 +27,5 @@
     - >-
       git ls-files -z |
       xargs -0 file --mime-type |
-      awk -F': *' '$2 == "text/x-shellscript" {print $1}' |
+      awk -F': *' '$2 == "text/x-shellscript" && $1 !~ /\.(j2|tpl|jinja2?)$/ {print $1}' |
       xargs -r shellcheck $SHELLCHECK_ARGS
