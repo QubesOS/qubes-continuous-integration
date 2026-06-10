@@ -1,0 +1,3 @@
+include:
+  - '/r4.2/gitlab-vm-gentoo-build.yml'
+  - '/r4.2/gitlab-vm-gentoo-install.yml'
