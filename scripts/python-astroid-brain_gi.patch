@@ -1,0 +1,84 @@
+From dd4d05873bc01b2943826e415483140de20801e0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+Date: Wed, 24 Jun 2026 15:55:14 +0200
+Subject: [PATCH 1/2] brain_gi: correctly mark static methods
+
+Do not register them as plain methods, as then pylint expects 'self'
+argument to be provided. This handles both statis methods and class
+methods in practice.
+---
+ astroid/brain/brain_gi.py | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/astroid/brain/brain_gi.py b/astroid/brain/brain_gi.py
+index 307753f1..19b6ac18 100644
+--- a/astroid/brain/brain_gi.py
++++ b/astroid/brain/brain_gi.py
+@@ -163,7 +163,17 @@ def _gi_build_stub(parent):  # noqa: C901
+     if methods:
+         ret += f"# {parent.__name__} methods\n\n"
+     for name in sorted(methods):
+-        ret += f"def {name}(self, *args, **kwargs):\n"
++        static = False
++        try:
++            if not methods[name].is_method():
++                static = True
++        except AttributeError:
++            pass
++        if static:
++            ret += "@staticmethod\n"
++            ret += f"def {name}(*args, **kwargs):\n"
++        else:
++            ret += f"def {name}(self, *args, **kwargs):\n"
+         ret += "    pass\n"
+ 
+     if ret:
+-- 
+2.54.0
+
+From 501e595312790eee8cec1b777745cea0df3d49c1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marek=20Marczykowski-G=C3=B3recki?=
+ <marmarek@invisiblethingslab.com>
+Date: Wed, 24 Jun 2026 19:10:15 +0200
+Subject: [PATCH 2/2] brain_gi: fix discovering zero value of enum.IntFlag
+
+GLib types often include also named 0 value in flag enums, which results
+in bettter self-documenting code than open-coded 0 in flag fields. But,
+enum.IntFlag doesn't enumerat that value (even when explicit
+enum.IntFlag.NAME works). Handle this special case when enumerating
+constants.
+---
+ astroid/brain/brain_gi.py | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/astroid/brain/brain_gi.py b/astroid/brain/brain_gi.py
+index 19b6ac18..79c3f7fc 100644
+--- a/astroid/brain/brain_gi.py
++++ b/astroid/brain/brain_gi.py
+@@ -9,6 +9,7 @@ Helps with understanding everything imported from 'gi.repository'
+ 
+ # pylint:disable=import-error,import-outside-toplevel
+ 
++import enum
+ import inspect
+ import itertools
+ import re
+@@ -130,6 +131,14 @@ def _gi_build_stub(parent):  # noqa: C901
+         else:
+             # Assume everything else is some manner of constant
+             constants[name] = 0
++    # iterating enum.IntFlag doesn't include the zero value
++    if inspect.isclass(parent) and issubclass(parent, enum.IntFlag):
++        try:
++            zero_name = parent(0).name
++            if zero_name:
++                constants[zero_name] = 0
++        except TypeError:
++            pass
+ 
+     ret = ""
+ 
+-- 
+2.54.0
+

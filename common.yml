@@ -13,6 +13,8 @@
       patch_url=https://github.com/QubesOS/qubes-continuous-integration/raw/main/scripts/pylint-astroid-workaround-2190.patch &&
       if grep -q 'from_node, global_names' "$file_to_patch"; then patch_url=${patch_url/.patch/-4.0.1.patch}; fi &&
       curl -sSL "$patch_url" | sudo patch "$file_to_patch"
+    - patch_url=https://github.com/QubesOS/qubes-continuous-integration/raw/main/scripts/python-astroid-brain_gi.patch &&
+      curl -sSL "$patch_url" | sudo patch -d /usr/lib/python3.*/site-packages -p 1
     - if [ -n "$PYREQUIREMENTS" ]; then pip3 install --quiet -r "$PYREQUIREMENTS"; fi
   script:
     - black $BLACK_ARGS --extend-exclude artifacts/ ${DIR:-.}
