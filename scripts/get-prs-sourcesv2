@@ -5,7 +5,7 @@ set -xe
 PR_LABEL="$1"
 
 search_results=$(curl https://api.github.com/search/issues?q="org:QubesOS+label:$PR_LABEL+is:open")
-prs=$(echo "$search_results" | jq -r '.items | .[] | .html_url')
+prs=$(echo "$search_results" | jq -r '.items | .[] | select(.labels[] | select(.name == "'"$PR_LABEL"'") | length > 0) | .html_url' )
 
 BASE_URL="https://github.com/QubesOS/qubes-"
 API_BASE="https://api.github.com/repos/QubesOS/qubes-"
