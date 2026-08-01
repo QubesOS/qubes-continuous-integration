@@ -49,7 +49,6 @@ distributions:
              threads: 2
   - vm-bookworm
   - vm-trixie
-  - vm-fc42
   - vm-fc43
   - vm-fc44
   - vm-archlinux
@@ -57,18 +56,6 @@ distributions:
   - vm-noble
 
 +templates:
-  - fedora-42:
-      dist: fc42
-      options:
-        - selinux
-  - fedora-42-xfce:
-      dist: fc42
-      flavor: xfce
-      options:
-        - selinux
-  - fedora-42-minimal:
-      dist: fc42
-      flavor: minimal
   - fedora-43:
       dist: fc43
       options:

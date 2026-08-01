@@ -1,10 +1,3 @@
-devel:repro:vm-fc42:
-  extends: .devel_components_repro
-  needs:
-    - devel:prep:sources
-    - devel:build:vm-fc42
-  allow_failure: true
-
 devel:repro:vm-fc43:
   extends: .devel_components_repro
   needs:
