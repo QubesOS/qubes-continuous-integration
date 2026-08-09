@@ -1,0 +1,5 @@
+r4.2:build:vm-gentoo:
+  extends: .r4.2_components_install
+  needs:
+    - r4.2:prep:sources
+    - r4.2:build:vm-gentoo

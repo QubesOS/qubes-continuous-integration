@@ -1,0 +1,35 @@
+chroot:vm-gentoo:
+  extends: .chroot_prepare
+  tags:
+    - vm
+    - long-living-job
+  needs:
+    - prep:sources
+  variables:
+    DISTS_VM: gentoo
+    USE_QUBES_REPO_VERSION: "4.1"
+    USE_QUBES_REPO_TESTING: "1"
+
+# chroot:vm-gentoo-minimal:
+#   extends: .chroot_prepare
+#   tags:
+#     - vm
+#     - long-living-job
+#   needs:
+#     - prep:sources
+#   variables:
+#     DISTS_VM: gentoo+minimal
+#     USE_QUBES_REPO_VERSION: "4.1"
+#     USE_QUBES_REPO_TESTING: "1"
+#
+# chroot:vm-gentoo-xfce:
+#   extends: .chroot_prepare
+#   tags:
+#     - vm
+#     - long-living-job
+#   needs:
+#     - prep:sources
+#   variables:
+#     DISTS_VM: gentoo+xfce
+#     USE_QUBES_REPO_VERSION: "4.1"
+#     USE_QUBES_REPO_TESTING: "1"
