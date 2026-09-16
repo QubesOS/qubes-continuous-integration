@@ -17,3 +17,13 @@ devel:build:fedora-44-minimal:
   extends: .devel_templates_build
   needs:
     - devel:prep:sources
+
+devel:build:fedora-45-gnome:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
+
+devel:build:fedora-45-minimal:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources

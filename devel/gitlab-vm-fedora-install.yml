@@ -9,3 +9,9 @@ devel:install:vm-fc44:
   needs:
     - devel:prep:sources
     - devel:build:vm-fc44
+
+devel:install:vm-fc45:
+  extends: .devel_components_install
+  needs:
+    - devel:prep:sources
+    - devel:build:vm-fc45

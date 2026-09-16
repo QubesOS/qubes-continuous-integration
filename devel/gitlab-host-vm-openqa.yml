@@ -7,4 +7,5 @@ devel:publish:repo:
     - devel:build:vm-trixie
     - devel:build:vm-fc43
     - devel:build:vm-fc44
+    - devel:build:vm-fc45
     - devel:build:vm-archlinux

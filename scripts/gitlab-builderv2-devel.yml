@@ -80,6 +80,18 @@ distributions:
   - fedora-44-minimal:
       dist: fc44
       flavor: minimal
+  - fedora-45-gnome:
+      dist: fc45
+      options:
+        - selinux
+  - fedora-45-xfce:
+      dist: fc45
+      flavor: xfce
+      options:
+        - selinux
+  - fedora-45-minimal:
+      dist: fc45
+      flavor: minimal
   - debian-12:
       dist: bookworm
       options:
