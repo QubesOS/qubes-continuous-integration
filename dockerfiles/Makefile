@@ -5,7 +5,6 @@ DOCKER_IMAGES ?= \
 	host-fc41 \
 	vm-trixie \
 	vm-bookworm \
-	vm-bullseye \
 	vm-archlinux \
 	vm-centos-stream8 \
 	vm-jammy \
