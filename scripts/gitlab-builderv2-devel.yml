@@ -49,6 +49,7 @@ distributions:
              threads: 2
   - vm-bookworm
   - vm-trixie
+  - vm-forky
   - vm-fc43
   - vm-fc44
   - vm-fc45

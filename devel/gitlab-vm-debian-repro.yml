@@ -9,3 +9,9 @@ devel:repro:vm-trixie:
   needs:
     - devel:prep:sources
     - devel:build:vm-trixie
+
+devel:repro:vm-forky:
+  extends: .devel_components_repro
+  needs:
+    - devel:prep:sources
+    - devel:build:vm-forky

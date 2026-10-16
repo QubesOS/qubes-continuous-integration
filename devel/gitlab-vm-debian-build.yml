@@ -7,3 +7,9 @@ devel:build:vm-trixie:
   extends: .devel_components_build
   needs:
     - devel:prep:sources
+
+devel:build:vm-forky:
+  extends: .devel_components_build
+  needs:
+    - devel:prep:sources
+  allow_failure: true
