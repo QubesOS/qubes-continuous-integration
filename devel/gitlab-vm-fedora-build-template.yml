@@ -17,3 +17,8 @@ devel:build:fedora-45-minimal:
   extends: .devel_templates_build
   needs:
     - devel:prep:sources
+
+devel:build:fedora-45-xfce:
+  extends: .devel_templates_build
+  needs:
+    - devel:prep:sources
