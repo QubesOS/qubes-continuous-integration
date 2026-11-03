@@ -56,18 +56,6 @@ distributions:
   - vm-noble
 
 +templates:
-  - fedora-43:
-      dist: fc43
-      options:
-        - selinux
-  - fedora-43-xfce:
-      dist: fc43
-      flavor: xfce
-      options:
-        - selinux
-  - fedora-43-minimal:
-      dist: fc43
-      flavor: minimal
   - fedora-44-gnome:
       dist: fc44
       options:
@@ -79,6 +67,18 @@ distributions:
         - selinux
   - fedora-44-minimal:
       dist: fc44
+      flavor: minimal
+  - fedora-45-gnome:
+      dist: fc45
+      options:
+        - selinux
+  - fedora-45-xfce:
+      dist: fc45
+      flavor: xfce
+      options:
+        - selinux
+  - fedora-45-minimal:
+      dist: fc45
       flavor: minimal
   - debian-12:
       dist: bookworm
