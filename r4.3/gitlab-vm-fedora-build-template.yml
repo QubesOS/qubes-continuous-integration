@@ -8,7 +8,7 @@ r4.3:build:fedora-44-minimal:
   needs:
     - r4.3:prep:sources
 
-r4.3:build:fedora-45:
+r4.3:build:fedora-45-gnome:
   extends: .r4.3_templates_build
   needs:
     - r4.3:prep:sources
