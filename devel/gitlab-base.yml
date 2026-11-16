@@ -76,6 +76,8 @@ stages:
   after_script:
     - sudo rm -rf $CI_PROJECT_DIR/artifacts
     - mv ~/qubes-builder/artifacts $CI_PROJECT_DIR/
+    # Do not pass packages of a failed build
+    - if [ "$CI_JOB_STATUS" != "success" ]; then sudo rm -rf $CI_PROJECT_DIR/artifacts/repository; fi
     - |
       if [ $(du -s $CI_PROJECT_DIR | awk '{print $1}') -ge $((1024*1024)) ]; then
         find $CI_PROJECT_DIR/ -name '*.src.rpm' -delete
@@ -88,9 +90,12 @@ stages:
     paths:
       - artifacts/logs
   stage: install
+  allow_failure:
+    exit_codes: 77
   before_script:
     # Get artifacts from build jobs
     - tar xf $CI_PROJECT_DIR/qubes-builder.tar.xz -C ~/
+    - if [ ! -d $CI_PROJECT_DIR/artifacts/repository ]; then echo "No packages from build job, skipping"; exit 77; fi
     - mv $CI_PROJECT_DIR/artifacts/repository ~/qubes-builder/artifacts/
     # Provide 'qubesbuilder'
     - export "PYTHONPATH=$PYTHONPATH:$HOME/qubes-builder"
@@ -111,9 +116,12 @@ stages:
       - artifacts/logs
       - artifacts/reprotest
   stage: repro
+  allow_failure:
+    exit_codes: 77
   before_script:
     # Get artifacts from build jobs
     - tar xf $CI_PROJECT_DIR/qubes-builder.tar.xz -C ~/
+    - if [ ! -d $CI_PROJECT_DIR/artifacts/repository ]; then echo "No packages from build job, skipping"; exit 77; fi
     - mv $CI_PROJECT_DIR/artifacts/repository ~/qubes-builder/artifacts/
     # Provide 'qubesbuilder'
     - export "PYTHONPATH=$PYTHONPATH:$HOME/qubes-builder"
