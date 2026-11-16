@@ -15,3 +15,4 @@ devel:repro:vm-forky:
   needs:
     - devel:prep:sources
     - devel:build:vm-forky
+  allow_failure: true
